@@ -2,12 +2,11 @@ package main
 
 import "fmt"
 
-// Observer interface
+
 type Observer interface {
     Update(message string)
 }
 
-// Subject interface
 type Subject interface {
     RegisterObserver(o Observer)
     RemoveObserver(o Observer)
