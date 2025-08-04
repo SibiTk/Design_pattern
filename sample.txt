@@ -1,0 +1,70 @@
+package main
+
+import "fmt"
+
+// Command interface
+type Command interface {
+	Execute()
+}
+
+// Receiver
+type Light struct{}
+
+func (l *Light) On() {
+	fmt.Println("Light is ON")
+}
+
+func (l *Light) Off() {
+	fmt.Println("Light is OFF")
+}
+
+// Concrete Commands
+type LightOnCommand struct {
+	light *Light
+}
+
+func (c *LightOnCommand) Execute() {
+	c.light.On()
+}
+
+type LightOffCommand struct {
+	light *Light
+}
+
+func (c *LightOffCommand) Execute() {
+	c.light.Off()
+}
+
+// Invoker
+type RemoteControl struct {
+	command Command
+}
+
+func (r *RemoteControl) SetCommand(c Command) {
+	r.command = c
+}
+
+func (r *RemoteControl) PressButton() {
+	r.command.Execute()
+}
+
+// Main function
+func main() {
+	// Receiver
+	light := &Light{}
+
+	// Concrete commands
+	lightOn := &LightOnCommand{light: light}
+	lightOff := &LightOffCommand{light: light}
+
+	// Invoker
+	remote := &RemoteControl{}
+
+	// Turn light on
+	remote.SetCommand(lightOn)
+	remote.PressButton()
+
+	// Turn light off
+	remote.SetCommand(lightOff)
+	remote.PressButton()
+}
