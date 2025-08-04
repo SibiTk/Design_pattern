@@ -45,7 +45,6 @@ func (c *ShoppingCart) Checkout(amount float64) {
 func main() {
 	cart := &ShoppingCart{}
 
-
 	creditCard := &CreditCard{Name: "Sibi", Number: "1234-5678-9012", CVV: "123"}
 	cart.SetPaymentMethod(creditCard)
 	cart.Checkout(100.50)
