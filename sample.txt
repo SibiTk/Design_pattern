@@ -2,69 +2,44 @@ package main
 
 import "fmt"
 
-// Command interface
-type Command interface {
-	Execute()
+type DB interface {
+    Connect() string
 }
 
-// Receiver
-type Light struct{}
+type MySQL struct{}
 
-func (l *Light) On() {
-	fmt.Println("Light is ON")
+func (m MySQL) Connect() string {
+    return "Connected to MySQL database"
 }
 
-func (l *Light) Off() {
-	fmt.Println("Light is OFF")
+type Postgres struct{}
+
+func (p Postgres) Connect() string {
+    return "Connected to PostgreSQL database"
 }
 
-// Concrete Commands
-type LightOnCommand struct {
-	light *Light
+type SQLite struct{}
+
+func (s SQLite) Connect() string {
+    return "Connected to SQLite database"
 }
 
-func (c *LightOnCommand) Execute() {
-	c.light.On()
+func DBFactory(dbType string) DB {
+    switch dbType {
+    case "mysql":
+        return MySQL{}
+    case "postgres":
+        return Postgres{}
+    case "sqlite":
+        return SQLite{}
+    default:
+        return nil
+    }
 }
 
-type LightOffCommand struct {
-	light *Light
-}
-
-func (c *LightOffCommand) Execute() {
-	c.light.Off()
-}
-
-// Invoker
-type RemoteControl struct {
-	command Command
-}
-
-func (r *RemoteControl) SetCommand(c Command) {
-	r.command = c
-}
-
-func (r *RemoteControl) PressButton() {
-	r.command.Execute()
-}
-
-// Main function
 func main() {
-	// Receiver
-	light := &Light{}
-
-	// Concrete commands
-	lightOn := &LightOnCommand{light: light}
-	lightOff := &LightOffCommand{light: light}
-
-	// Invoker
-	remote := &RemoteControl{}
-
-	// Turn light on
-	remote.SetCommand(lightOn)
-	remote.PressButton()
-
-	// Turn light off
-	remote.SetCommand(lightOff)
-	remote.PressButton()
+    db := DBFactory("postgres")
+    if db != nil {
+        fmt.Println(db.Connect())
+    }
 }
