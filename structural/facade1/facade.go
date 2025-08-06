@@ -18,7 +18,7 @@ func (s *ScreenManager) ShowScreen() {
     fmt.Println("Showing screen...")
 }
 
-// Facade encapsulating the complex subsystem
+
 type MultimediaFacade struct {
     audioPlayer   *AudioPlayer
     videoPlayer   *VideoPlayer
@@ -33,7 +33,7 @@ func NewMultimediaFacade() *MultimediaFacade {
     }
 }
 
-// Simplified interface for clients
+
 func (m *MultimediaFacade) PlayMovie() {
     m.audioPlayer.PlayAudio()
     m.videoPlayer.PlayVideo()

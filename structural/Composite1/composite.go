@@ -50,17 +50,17 @@ func (m *Manager) ShowDetails(indent string) {
 
 
 func main() {
-	// Employees
+	
 	dev1 := &Developer{Name: "Sibi"}
 	dev2 := &Developer{Name: "Tharshan"}
 	designer := &Designer{Name: "MAxi"}
 
-	// Team Lead (manager)
+	
 	teamLead := &Manager{Name: "kalai"}
 	teamLead.AddSubordinate(dev1)
 	teamLead.AddSubordinate(dev2)
 
-	// Department Head (manager)
+	
 	deptHead := &Manager{Name: "Kumar"}
 	deptHead.AddSubordinate(teamLead)
 	deptHead.AddSubordinate(designer)

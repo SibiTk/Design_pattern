@@ -20,7 +20,7 @@ type ReadyState struct {
 }
 func (s *ReadyState) Request() {
     if s.machine.products > 0 {
-        fmt.Println("Product dispensed!")
+        fmt.Println("Product dispensed")
         s.machine.products--
         if s.machine.products == 0 {
             s.machine.state = &SoldOutState{s.machine}
