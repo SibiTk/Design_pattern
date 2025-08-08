@@ -48,6 +48,7 @@ func (h *AccountValidator) Handle(request *ATMRequest) error {
 	if request.AccountName != h.ValidAccount {
 		return errors.New("account not recognized")
 	}
+
 	fmt.Println(" Account validated")
 	return h.CallNext(request)
 }
@@ -85,7 +86,7 @@ type CashDispenser struct {
 
 func (h *CashDispenser) Handle(request *ATMRequest) error {
 	request.Balance -= request.Amount
-	fmt.Printf("💸 Withdrawal of %d successful. New balance: %d\n", request.Amount, request.Balance)
+	fmt.Printf("Withdrawal of %d successful. New balance: %d\n", request.Amount, request.Balance)
 	return h.CallNext(request)
 }
 

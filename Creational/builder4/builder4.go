@@ -57,15 +57,18 @@ func (h *HouseBuilder)Build()*House{
 
 
 func (c *House)Print(){
-	fmt.Println("<== DETAILS OF OWNER AND HOUSE")
+	fmt.Println("<== DETAILS OF OWNER AND HOUSE=cd ..==>")
 	fmt.Printf("Name : %s\n",c.Name)
 	fmt.Printf("Phone : %s\n",c.Phone)
+	fmt.Printf("Balconi :%s\n",c.Balconi)
+	fmt.Printf("Floor :%d\n",c.Floor)
+
 }
 
 
 func main(){
 
-owner1 :=NewHouseBuilder("Dharmesh","dharmeshit07@gmail.com").SetBalconi("Balconi is in the first Floor").SetFloor(2).SetGarden("Garden is on the right side of the house").Build()
+owner1 :=NewHouseBuilder("Dharmesh","9344954272").SetBalconi("Found in the first Floor").SetFloor(2).SetGarden("Garden is on the right side of the house").Build()
 owner1.Print()
 
 }

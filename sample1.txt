@@ -1,0 +1,69 @@
+2. Media Player (Audio/Video)
+State	Behavior
+▶️ Playing	Pause, Stop available
+⏸️ Paused	Resume, Stop available
+⏹️ Stopped	Play available
+
+When the user presses buttons, behavior changes based on the current state.
+
+Instead of if (state == "playing"), you use state objects like PlayingState, PausedState.
+
+//Builder
+3.pc := NewPCBuilder("Intel i9").
+    SetRAM(32).
+    SetSSD(1).
+    AddGPU("NVIDIA RTX 4080").
+    Build()
+
+    4.Test Data Builder (in Testing)
+When writing tests, you often need objects with dummy data. Builders help avoid repetition:
+
+testUser := NewUserBuilder("TestUser", "test@example.com").
+    SetAge(99).
+    SetTestFlag(true).
+    Build()
+5.query := NewQueryBuilder("users").
+    Select("name", "age").
+    Where("age > 30").
+    OrderBy("age").
+    Limit(10).
+    Build()
+
+    6. 1. Shopping Cart in an E-commerce App
+Imagine you add several items to your shopping cart.
+
+When you go to checkout, the app iterates over each item to:
+
+Display the name, quantity, price
+
+Calculate the total cost
+
+As a user, or even as a developer using the cart,
+ you don’t care whether the items are stored in a list
+ , map, or database — you just go through each item one by one.
+
+✅ The iterator pattern hides the internal structure of the cart and
+ provides a uniform way to loop through it.
+
+ books := library.GetBooksByCategory("Science Fiction")
+iterator := books.Iterator()
+
+for iterator.HasNext() {
+    book := iterator.Next()
+    fmt.Println("Title:", book.Title)
+}
+ Book Collection in a Library System
+A librarian wants to go through 
+all the books in a category.
+
+Some categories may be stored as arrays, 
+others as linked lists, or fetched from APIs.
+
+Regardless of how they’re stored, the librarian 
+can just use an iterator to go one by one 
+through the books.
+
+✅ This allows flexibility in how collections 
+are stored while offering a standard way 
+to traverse them.
+
