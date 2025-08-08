@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// Product
+
 type User struct {
 	Name    string
 	Email   string
